@@ -43,11 +43,8 @@ def plot_maps(**kwargs):
 		nrows=1
 		ncols=len(data)/nrows
 
-	print((3*asp*len(data)/nrows,3*nrows))
 	fig,axes = plt.subplots(nrows=nrows,ncols=ncols+1,figsize=(3*asp*len(data)/nrows,3*nrows),subplot_kw={'projection': plate_carree},gridspec_kw = {'width_ratios':[3]*ncols+[1]})
-	print(axes,axes.shape)
 	if len(axes.shape)==1: axes=np.expand_dims(axes, axis=0)
-	print(axes,axes.shape)
 	for ax,i in zip(axes[:,:-1].flatten()[:len(data)],range(len(data))):
 		ax.set_global()
 		ax.coastlines(edgecolor='black')

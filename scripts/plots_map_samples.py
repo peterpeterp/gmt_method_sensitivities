@@ -72,3 +72,4 @@ arguments={
 	'extend':[-10,20,40,65],
 	'nrows':1,
 }
+pl_mp.plot_maps(**arguments)
