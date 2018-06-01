@@ -51,7 +51,7 @@ import plot_maps as pl_mp; reload(pl_mp)
 arguments={
 	'files':['data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc'],
 	'var_names':['tas','tas'],
-	'titles':['tas','tas'],
+	'titles':['January','August'],
 	'time_steps':[0,7],
 	'outfile':'gmt_method_sensitivities/figures/maps_CanESM2_tas.png',
 	'label':'tas [K]',
@@ -65,7 +65,7 @@ pl_mp.plot_maps(**arguments)
 arguments={
 	'files':['data_models/CanESM2_r1i1p1/sample_tos.nc','data_models/CanESM2_r1i1p1/sample_tos.nc'],
 	'var_names':['tos','tos'],
-	'titles':['tos','tos'],
+	'titles':['January','August'],
 	'time_steps':[0,7],
 	'outfile':'gmt_method_sensitivities/figures/maps_CanESM2_tos.png',
 	'label':'tos [K]',
