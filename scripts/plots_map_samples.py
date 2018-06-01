@@ -16,7 +16,7 @@ try:
 except:
 	os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt')
 
-sys.path.append('ReScience')
+sys.path.append('gmt_method_sensitivities')
 
 import plot_maps as pl_mp; reload(pl_mp)
 
@@ -25,7 +25,7 @@ import plot_maps as pl_mp; reload(pl_mp)
 # 	'files':['data_models/rcp85-xxx_rcp85_EC-EARTH_r1i1p1/tos.nc','data_models/EC-EARTH_r1i1p1/tos.nc'],
 # 	'var_names':['tos','tos'],
 # 	'titles':['correct NAN-treatment','no NAN-treatment'],
-# 	'outfile':'ReScience/figures/maps_tosTreatment.png',
+# 	'outfile':'gmt_method_sensitivities/figures/maps_tosTreatment.png',
 # 	'label':'tos [K]',
 # 	'color_range':[270,290],
 # 	'extend':[-10,20,40,65],
@@ -40,7 +40,7 @@ import plot_maps as pl_mp; reload(pl_mp)
 # 	'files':['sftof_regrid/ACCESS1-0_remapdis.nc','sftof_regrid/ACCESS1-0_remapbil.nc','sftof_regrid/ACCESS1-0_remapnn.nc','sftof_regrid/ACCESS1-0_remapdis_sftlfBased.nc','sftof_regrid/ACCESS1-0_remapbil_sftlfBased.nc','sftof_regrid/ACCESS1-0_remapnn_sftlfBased.nc'],
 # 	'var_names':['sftof','sftof','sftof','sftof','sftof','sftof'],
 # 	'titles':['remapdis','remapbil','remapnn','remapdis from sftlf','remapbil from sftlf','remapnn from sftlf'],
-# 	'outfile':'ReScience/figures/maps_sftofRegrid.png',
+# 	'outfile':'gmt_method_sensitivities/figures/maps_sftofRegrid.png',
 # 	'label':'sftof [0-100]',
 # 	'color_range':[0,100],
 # 	'extend':[-10,20,40,65],
@@ -53,7 +53,7 @@ arguments={
 	'var_names':['tas','tas'],
 	'titles':['tas','tas'],
 	'time_steps':[0,7],
-	'outfile':'ReScience/figures/maps_CanESM2_tas.png',
+	'outfile':'gmt_method_sensitivities/figures/maps_CanESM2_tas.png',
 	'label':'tas [K]',
 	'color_range':[270,300],
 	'extend':[-10,20,40,65],
@@ -66,7 +66,7 @@ pl_mp.plot_maps(**arguments)
 # 	'files':['sftof_regrid/ACCESS1-0_remapdis.nc','sftof_regrid/ACCESS1-0_remapbil.nc','sftof_regrid/ACCESS1-0_remapnn.nc','sftof_regrid/ACCESS1-0_remapdis_sftlfBased.nc','sftof_regrid/ACCESS1-0_remapbil_sftlfBased.nc','sftof_regrid/ACCESS1-0_remapnn_sftlfBased.nc'],
 # 	'var_names':['sftof','sftof','sftof','sftof','sftof','sftof'],
 # 	'titles':['remapdis','remapbil','remapnn','remapdis from sftlf','remapbil from sftlf','remapnn from sftlf'],
-# 	'outfile':'ReScience/figures/maps_sftofRegrid.png',
+# 	'outfile':'gmt_method_sensitivities/figures/maps_sftofRegrid.png',
 # 	'label':'sftof [0-100]',
 # 	'color_range':[0,100],
 # 	'extend':[-10,20,40,65],

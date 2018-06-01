@@ -8,7 +8,7 @@ import matplotlib
 import pandas as pd
 import seaborn as sn
 
-os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt/ReScience')
+os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt/gmt_method_sensitivities')
 
 
 gmt_cowtan=da.read_nc('../data/gmt_all_cowtan.nc')['gmt']

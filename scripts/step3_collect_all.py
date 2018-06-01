@@ -28,7 +28,7 @@ find ../data_models/*/ -name "*.txt" -size -99 -print
 find ../data_models/*/ -name "*.txt" -size -99 -exec rm {} \;
 '''
 
-os.chdir('/p/projects/tumble/carls/shared_folder/gmt/ReScience')
+os.chdir('/p/projects/tumble/carls/shared_folder/gmt/gmt_method_sensitivities/')
 
 tmp_example=pd.read_table('../data_models/ACCESS1-0_r1i1p1/had4_rcp85.txt',sep=' ',header=None)
 gmt=da.DimArray(axes=[versions,regrids,styles,['rcp85'],model_runs,variables,np.array(tmp_example[0])],dims=['version','sftof_regrid','style','scenario','model_run','variable','time'])

@@ -154,4 +154,4 @@ for sftof_style in regrid_styles:
 		Popen('python gmt_methods/ncblendmask-nc4.py '+style+' '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/'+style+'_'+scenario+sftof_style+'_normal.txt',shell=True).wait()
 		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_normal.txt',shell=True).wait()
 
-		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  ReScience/data/CRU46.nc ReScience/data/SST31.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_CRU46.txt',shell=True).wait()
+		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  gmt_method_sensitivities/data/CRU46.nc gmt_method_sensitivities/data/SST31.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_CRU46.txt',shell=True).wait()

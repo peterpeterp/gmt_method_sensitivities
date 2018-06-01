@@ -10,7 +10,7 @@ import seaborn as sns
 sns.set()
 plt.rc('font',family='Calibri')
 
-os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt/ReScience')
+os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt/gmt_method_sensitivities')
 
 
 gmt_cowtan=da.read_nc('../data/gmt_all_cowtan.nc')['gmt']
