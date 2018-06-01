@@ -44,7 +44,7 @@ model=model_run.split('_')[0]
 run=model_run.split('_')[1]
 
 if args.versions is None:
-	versions=['_normal','_sftofError','_tosError','_CRU46','_sicError','_naive']
+	versions=['_normal','_sftofError','_tosError','_CRU46','_sicError','_naive','_sftofNanTreated']
 else:
 	versions=args.versions
 
@@ -140,6 +140,16 @@ for sftof_style in regrid_styles:
 			sftof='sftof_regrid/'+model+sftof_style+'.nc'
 		Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofError.txt',shell=True).wait()
 		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofError.txt',shell=True).wait()
+
+	# new sftof treatment
+	if '_sftofNanTreated' in versions:
+		tas='data_models/'+model+'_'+run+'/tas_'+scenario+'_1861-2099.nc'
+		tos='data_models/'+model+'_'+run+'/tos_'+scenario+'_1861-2099.nc'
+		sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_sicFix_1861-2099.nc'
+		if os.path.isfile('sftof_regrid/'+sftof_replace_dict_naive[model]+sftof_style+'_NanTreated.nc'):
+			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
+			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
+
 
 
 	# reproduce normal
