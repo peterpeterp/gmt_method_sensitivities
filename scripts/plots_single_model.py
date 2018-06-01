@@ -32,33 +32,42 @@ tos_issues=[u'EC-EARTH_r1i1p1',
 def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None):
 	if labels is None: labels=versions
 	plt.close('all')
-	fig,ax=plt.subplots(nrows=1,ncols=1,figsize=(4,4))
+	fig,ax=plt.subplots(nrows=1,ncols=1,figsize=(3,3))
 	for version,sftof_style,label in zip(versions,sftof_styles,labels):
 		diff=(gmt_all[version,sftof_style,style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
 		ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label=label)
 
-	ax.text(1853,0.033,model_run.replace('_','\n'),fontsize=9)
 	ax.set_xlim((1850,2100))
 	#ax.set_ylim((-0.05,0.05))
 	#ax.set_yticks([-0.05,-0.025,0,0.025,0.05])
-	plt.legend()
+	ax.legend(loc='best')
 	plt.tight_layout()
 	plt.savefig(outname)
 
 plot_single(model_run='EC-EARTH_r1i1p1',
 			style='xax',
 			var='gmt',
-			versions=['_tosError','_sicError','_normal'],
+			versions=['_naive','_tosError','_normal'],
+			labels=['naive','tos Error','normal'],
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
-			outname='figures/tosError_EC-EARTH_r1i1p1.png')
+			outname='figures/tosError_EC-EARTH.png')
 
-
-plot_single(model_run='CanESM2_r1i1p1',
+plot_single(model_run='EC-EARTH_r1i1p1',
 			style='xax',
 			var='gmt',
-			versions=['_sftofError','_normal'],
-			sftof_styles=['_remapbil','_remapbil'],
-			outname='figures/sftofError_CanESM2_r1i1p1.png')
+			versions=['_naive','_sicError','_normal'],
+			labels=['naive','sic Error','normal'],
+			sftof_styles=['_remapbil','_remapbil','_remapbil'],
+			outname='figures/sicError_EC-EARTH.png')
+
+
+plot_single(model_run='IPSL-CM5A-LR_r1i1p1',
+			style='xax',
+			var='gmt',
+			versions=['_sftofError','_normal','_sftofNanTreated'],
+			labels=['original sftof','ACCESS1-0 sftof','NAN treatment in sftof'],
+			sftof_styles=['_remapbil','_remapbil','_remapbil'],
+			outname='figures/sftofError_IPSL-CM5A-LR.png')
 
 
 plot_single(model_run='ACCESS1-0_r1i1p1',

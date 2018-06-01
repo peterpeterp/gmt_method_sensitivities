@@ -23,21 +23,21 @@ import plot_maps as pl_mp; reload(pl_mp)
 
 # sic treatment
 arguments={
-	'files':['/p/projects/ipcc_pcmdi/ipcc_ar5_pcmdi/pcmdi_data/historical/OImon/sic/EC-EARTH/r1i1p1/sic_OImon_EC-EARTH_historical_r1i1p1_185001-200912.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_1861-2014.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
-	'var_names':['sic','sic','sic'],
+	'files':['data_models/EC-EARTH_r1i1p1/sic_rcp85_1861-2014.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
+	'var_names':['sic','sic'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_sicTreatment.png',
 	'label':'sic [0-1]',
 	'color_range':[0,1],
 	'extend':[5,35,50,85],
-	'time_steps':[132,0,0],
+	'time_steps':[0,0],
 }
 pl_mp.plot_maps(**arguments)
 
 
 # tos treatment
 arguments={
-	'files':['/p/projects/ipcc_pcmdi/ipcc_ar5_pcmdi/pcmdi_data/historical/Omon/tos/EC-EARTH/r1i1p1/tos_Omon_EC-EARTH_historical_r1i1p1_185001-200912.nc','data_models/EC-EARTH_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/EC-EARTH_r1i1p1/tos_rcp85_1861-2014.nc'],
+	'files':['data_models/EC-EARTH_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/EC-EARTH_r1i1p1/tos_rcp85_1861-2014.nc'],
 	'var_names':['tos','tos'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_tosTreatment.png',
@@ -89,6 +89,18 @@ arguments={
 }
 pl_mp.plot_maps(**arguments)
 
+# IPSL-CM5A-LR sftof replace
+arguments={
+	'files':['sftof_regrid/IPSL-CM5A-LR_remapbil.nc','sftof_regrid/IPSL-CM5A-LR_remapbil_NanTreated.nc','sftof_regrid/ACCESS1-0_remapbil.nc'],
+	'var_names':['sftof','sftof','sftof'],
+	'titles':['IPSL-CM5A-LR','IPSL-CM5A-LR nan treatment','ACCESS1-0'],
+	'outfile':'gmt_method_sensitivities/figures/maps_sftof_IPSL-CM5A-LR.png',
+	'label':'sftof [0-100]',
+	'color_range':[0,100],
+	'extend':[-10,20,30,65],
+	'nrows':1,
+}
+pl_mp.plot_maps(**arguments)
 
 # ACCESS1-0 sftof regridding
 arguments={
