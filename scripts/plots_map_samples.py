@@ -49,12 +49,26 @@ import plot_maps as pl_mp; reload(pl_mp)
 
 # CanESM2 tas
 arguments={
-	'files':['data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc'],
+	'files':['data_models/CanESM2_r1i1p1/tas.nc','data_models/CanESM2_r1i1p1/tas.nc'],
 	'var_names':['tas','tas'],
 	'titles':['tas','tas'],
 	'time_steps':[0,7],
 	'outfile':'gmt_method_sensitivities/figures/maps_CanESM2_tas.png',
 	'label':'tas [K]',
+	'color_range':[270,300],
+	'extend':[-10,20,30,65],
+	'nrows':1,
+}
+pl_mp.plot_maps(**arguments)
+
+# CanESM2 tas
+arguments={
+	'files':['data_models/CanESM2_r1i1p1/tos.nc','data_models/CanESM2_r1i1p1/tos.nc'],
+	'var_names':['tos','tos'],
+	'titles':['tos','tos'],
+	'time_steps':[0,7],
+	'outfile':'gmt_method_sensitivities/figures/maps_CanESM2_tos.png',
+	'label':'tos [K]',
 	'color_range':[270,300],
 	'extend':[-10,20,30,65],
 	'nrows':1,
