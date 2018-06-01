@@ -63,7 +63,7 @@ pl_mp.plot_maps(**arguments)
 
 # ACCESS1-0 sftof regridding
 arguments={
-	'files':['sftof_regrid/ACCESS1-0_remapbil.nc','sftof_regrid/CanESM2_remapbil.nc'],
+	'files':['sftof_regrid/ACCESS1-0_remapdis.nc','sftof_regrid/CanESM2_remapdis.nc'],
 	'var_names':['sftof','sftof'],
 	'titles':['ACCESS1-0','CanESM2'],
 	'outfile':'gmt_method_sensitivities/figures/maps_sftof_CanESM2_ACCESS1-0.png',
