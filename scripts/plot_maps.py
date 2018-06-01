@@ -56,7 +56,7 @@ def plot_maps(**kwargs):
 		xx=np.append(xx-x_step*0.5,xx[-1]+x_step*0.5)
 		yy=np.append(yy-y_step*0.5,yy[-1]+y_step*0.5)
 		lons,lats=np.meshgrid(xx,yy)
-		im=ax.pcolormesh(lons,lats,data[i],vmin=kwargs['color_range'][0],vmax=kwargs['color_range'][1],cmap=plt.cm.jet);
+		im=ax.pcolormesh(lons,lats,np.ma.masked_invalid(data[i]),vmin=kwargs['color_range'][0],vmax=kwargs['color_range'][1],cmap=plt.cm.jet);
 		ax.set_title(kwargs['titles'][i])
 		#ax.annotate(season+'\n'+dataset, xy=(0.02, 0.05), xycoords='axes fraction', fontsize=9,fontweight='bold')
 

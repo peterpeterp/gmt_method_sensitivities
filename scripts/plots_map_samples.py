@@ -19,8 +19,19 @@ except:
 sys.path.append('gmt_method_sensitivities/scripts')
 
 import plot_maps as pl_mp; reload(pl_mp)
-
-
+# 
+# # sic treatment
+# arguments={
+# 	'files':['data_models/EC-EARTH_r1i1p1/sample_sic_EC-EARTH.nc','data_models/rcp85-xxx_rcp85_EC-EARTH_r1i1p1/sic.nc'],
+# 	'var_names':['sic','sic'],
+# 	'titles':['no NAN-treatment','correct NAN-treatment'],
+# 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_sicTreatment.png',
+# 	'label':'sic [0-1]',
+# 	'color_range':[0,1],
+# 	'extend':[5,35,50,85],
+# 	'time_steps':[0,0],
+# }
+# pl_mp.plot_maps(**arguments)
 
 # sic treatment
 arguments={
