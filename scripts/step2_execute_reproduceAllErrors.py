@@ -31,11 +31,6 @@ parser.add_argument('--versions','-v' ,help='error versions',nargs='+',default=N
 parser.add_argument('--regrid_styles','-rs' ,help='sftof regrid_styles',nargs='+',default=None)
 args = parser.parse_args()
 
-if args.overwrite:
-    overwrite=True
-else:
-    overwrite=False
-
 if args.job_id is None:
 	model_run=args.model_run
 else:
@@ -96,8 +91,11 @@ for sftof_style in regrid_styles:
 			sftof='sftof_regrid/'+sftof_replace_dict_naive[model]+sftof_style+'.nc'
 		else:
 			sftof='sftof_regrid/'+model+sftof_style+'.nc'
-		Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_naive.txt',shell=True).wait()
-		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_naive.txt',shell=True).wait()
+
+		if os.path.isfile('data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_naive.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_naive.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_naive.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_naive.txt',shell=True).wait()
 
 
 	# reproduce sic error only
@@ -109,8 +107,10 @@ for sftof_style in regrid_styles:
 			sftof='sftof_regrid/'+sftof_replace_dict[model]+sftof_style+'.nc'
 		else:
 			sftof='sftof_regrid/'+model+sftof_style+'.nc'
-		Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sicError.txt',shell=True).wait()
-		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sicError.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sicError.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sicError.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sicError.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sicError.txt',shell=True).wait()
 
 
 
@@ -127,8 +127,10 @@ for sftof_style in regrid_styles:
 				sftof='sftof_regrid/'+sftof_replace_dict[model]+sftof_style+'.nc'
 			else:
 				sftof='sftof_regrid/'+model+sftof_style+'.nc'
-			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_tosError.txt',shell=True).wait()
-			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_tosError.txt',shell=True).wait()
+			if os.path.isfile('data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_tosError.txt')==False or args.overwrite:
+				Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_tosError.txt',shell=True).wait()
+			if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_tosError.txt')==False or args.overwrite:
+				Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_tosError.txt',shell=True).wait()
 
 
 	# reproduce sftof replace only
@@ -142,8 +144,10 @@ for sftof_style in regrid_styles:
 			sftof='sftof_regrid/'+sftof_replace_dict_naive[model]+sftof_style+'.nc'
 		else:
 			sftof='sftof_regrid/'+model+sftof_style+'.nc'
-		Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofError.txt',shell=True).wait()
-		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofError.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofError.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofError.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofError.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofError.txt',shell=True).wait()
 
 	# new sftof treatment
 	if '_sftofNanTreated' in versions:
@@ -157,8 +161,10 @@ for sftof_style in regrid_styles:
 		else:
 			sftof='sftof_regrid/'+model+sftof_style+'_NanTreated.nc'
 		if os.path.isfile(sftof):
-			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
-			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
+			if os.path.isfile('data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofNanTreated.txt')==False or args.overwrite:
+				Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
+			if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofNanTreated.txt')==False or args.overwrite:
+				Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
 
 	# reproduce normal
 	if '_normal' in versions:
@@ -172,7 +178,10 @@ for sftof_style in regrid_styles:
 			sftof='sftof_regrid/'+sftof_replace_dict[model]+sftof_style+'.nc'
 		else:
 			sftof='sftof_regrid/'+model+sftof_style+'.nc'
-		Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_normal.txt',shell=True).wait()
-		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_normal.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_normal.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_normal.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_normal.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_normal.txt',shell=True).wait()
 
-		Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  gmt_method_sensitivities/data/CRU46.nc gmt_method_sensitivities/data/SST31.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_CRU46.txt',shell=True).wait()
+		if os.path.isfile('data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_CRU46.txt')==False or args.overwrite:
+			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  gmt_method_sensitivities/data/CRU46.nc gmt_method_sensitivities/data/SST31.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_CRU46.txt',shell=True).wait()
