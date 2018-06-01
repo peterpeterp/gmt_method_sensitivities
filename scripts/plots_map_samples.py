@@ -37,7 +37,7 @@ pl_mp.plot_maps(**arguments)
 # sic treatment
 arguments={
 	'files':['data_models/EC-EARTH_r1i1p1/sic_rcp85_1861-2014.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
-	'var_names':['tos','tos'],
+	'var_names':['sic','sic'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_sicTreatment.png',
 	'label':'sic [%]',
