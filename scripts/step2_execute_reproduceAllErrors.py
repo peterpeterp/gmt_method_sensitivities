@@ -50,7 +50,7 @@ else:
 
 if args.regrid_styles is None:
 	regrid_styles=['_remapnn','_remapdis','_remapbil']
-	regrid_styles=['_remapnn_sftlfBased','_remapdis_sftlfBased','_remapbil_sftlfBased']
+	#regrid_styles=['_remapnn_sftlfBased','_remapdis_sftlfBased','_remapbil_sftlfBased']
 else:
 	regrid_styles=args.regrid_styles
 
