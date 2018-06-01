@@ -119,6 +119,8 @@ for sftof_style in regrid_styles:
 	if '_tosError' in versions:
 		tas='data_models/'+model+'_'+run+'/tas_'+scenario+'_1861-2099.nc'
 		sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_sicFix_1861-2099.nc'
+		if os.path.isfile(sic)==False:
+			sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_1861-2099.nc'
 		if os.path.isfile('data_models/'+model+'_'+run+'/tos_'+scenario+'_tosError.nc'):
 			tos='data_models/'+model+'_'+run+'/tos_'+scenario+'_tosError_1861-2099.nc'
 			if model in sftof_replace_dict.keys():
@@ -134,6 +136,8 @@ for sftof_style in regrid_styles:
 		tas='data_models/'+model+'_'+run+'/tas_'+scenario+'_1861-2099.nc'
 		tos='data_models/'+model+'_'+run+'/tos_'+scenario+'_1861-2099.nc'
 		sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_sicFix_1861-2099.nc'
+		if os.path.isfile(sic)==False:
+			sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_1861-2099.nc'
 		if model in sftof_replace_dict_naive.keys():
 			sftof='sftof_regrid/'+sftof_replace_dict_naive[model]+sftof_style+'.nc'
 		else:
@@ -146,6 +150,8 @@ for sftof_style in regrid_styles:
 		tas='data_models/'+model+'_'+run+'/tas_'+scenario+'_1861-2099.nc'
 		tos='data_models/'+model+'_'+run+'/tos_'+scenario+'_1861-2099.nc'
 		sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_sicFix_1861-2099.nc'
+		if os.path.isfile(sic)==False:
+			sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_1861-2099.nc'
 		if model in sftof_replace_dict_naive.keys():
 			sftof='sftof_regrid/'+sftof_replace_dict_naive[model]+sftof_style+'_NanTreated.nc'
 		else:
@@ -154,13 +160,14 @@ for sftof_style in regrid_styles:
 			Popen('python gmt_methods/ncblendmask-nc4.py xax '+tas+' '+tos+' '+sic+' '+sftof+' > data_models/'+model+'_'+run+'/xax_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
 			Popen('python gmt_methods/ncblendhadcrut-nc4.py '+tas.replace('2099','2014')+' '+tos.replace('2099','2014')+' '+sic.replace('2099','2014')+' '+sftof+'  blend-runnable/CRU.nc blend-runnable/SST.nc > data_models/'+model+'_'+run+'/had4_'+scenario+sftof_style+'_sftofNanTreated.txt',shell=True).wait()
 
-
-
 	# reproduce normal
 	if '_normal' in versions:
 		tas='data_models/'+model+'_'+run+'/tas_'+scenario+'_1861-2099.nc'
 		tos='data_models/'+model+'_'+run+'/tos_'+scenario+'_1861-2099.nc'
 		sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_sicFix_1861-2099.nc'
+		if os.path.isfile(sic)==False:
+			sic='data_models/'+model+'_'+run+'/sic_'+scenario+'_1861-2099.nc'
+
 		if model in sftof_replace_dict.keys():
 			sftof='sftof_regrid/'+sftof_replace_dict[model]+sftof_style+'.nc'
 		else:

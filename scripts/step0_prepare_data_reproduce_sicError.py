@@ -80,6 +80,7 @@ sftof_replace_dict_naive={'HadGEM2-AO':'HadGEM2-ES',
 					'CNRM-CM5':'CNRM-CM5-2',
 					} #'CESM1-CAM5':'CESM1-BGC'
 
+
 def normal_procedure(model,run,scenario,group,var,overwrite):
 	command='cdo -O -a mergetime '
 	hist_files=glob.glob('/p/projects/ipcc_pcmdi/ipcc_ar5_pcmdi/pcmdi_data/historical/'+group+'/'+var+'/'+model+'/'+run+'/*')

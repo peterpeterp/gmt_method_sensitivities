@@ -35,8 +35,8 @@ for model_run,ax,i in zip(all_model_runs,axes[0:len(all_model_runs)],range(len(a
 	if np.isfinite(np.nanmean(gmt_all['_normal','_remapbil','xax','rcp85',model_run,'gmt',:].values)):
 		diff=(gmt_all['_naive','_remapbil','xax','rcp85',model_run,var,1861:2100].values-gmt_cowtan['xax','rcp85',model_run,var,1861:2100].values)
 		ax.plot(gmt_cowtan.time,diff)
-		#diff=(gmt_all['_normal','_remapbil','xax','rcp85',model_run,var,1861:2100].values-gmt_cowtan['xax','rcp85',model_run,var,1861:2100].values)
-		#ax.plot(gmt_cowtan.time,diff)
+		diff=(gmt_all['_normal','_remapbil','xax','rcp85',model_run,var,1861:2100].values-gmt_cowtan['xax','rcp85',model_run,var,1861:2100].values)
+		ax.plot(gmt_cowtan.time,diff)
 
 	ax.text(1853,0.033,model_run.replace('_','\n'),fontsize=9)
 	ax.set_xlim((1850,2100))
