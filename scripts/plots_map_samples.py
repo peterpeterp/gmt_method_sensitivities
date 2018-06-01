@@ -49,7 +49,7 @@ import plot_maps as pl_mp; reload(pl_mp)
 
 # CanESM2 tas
 arguments={
-	'files':['data_models/CanESM2_r1i1p1/tas.nc','data_models/CanESM2_r1i1p1/tas.nc'],
+	'files':['data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc'],
 	'var_names':['tas','tas'],
 	'titles':['tas','tas'],
 	'time_steps':[0,7],
@@ -63,7 +63,7 @@ pl_mp.plot_maps(**arguments)
 
 # CanESM2 tas
 arguments={
-	'files':['data_models/CanESM2_r1i1p1/tos.nc','data_models/CanESM2_r1i1p1/tos.nc'],
+	'files':['data_models/CanESM2_r1i1p1/sample_tos.nc','data_models/CanESM2_r1i1p1/sample_tos.nc'],
 	'var_names':['tos','tos'],
 	'titles':['tos','tos'],
 	'time_steps':[0,7],
