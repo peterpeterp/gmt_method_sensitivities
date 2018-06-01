@@ -16,7 +16,7 @@ try:
 except:
 	os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt')
 
-sys.path.append('gmt_method_sensitivities')
+sys.path.append('gmt_method_sensitivities/scripts')
 
 import plot_maps as pl_mp; reload(pl_mp)
 
@@ -61,14 +61,14 @@ arguments={
 }
 pl_mp.plot_maps(**arguments)
 
-# # ACCESS1-0 sftof regridding
-# arguments={
-# 	'files':['sftof_regrid/ACCESS1-0_remapdis.nc','sftof_regrid/ACCESS1-0_remapbil.nc','sftof_regrid/ACCESS1-0_remapnn.nc','sftof_regrid/ACCESS1-0_remapdis_sftlfBased.nc','sftof_regrid/ACCESS1-0_remapbil_sftlfBased.nc','sftof_regrid/ACCESS1-0_remapnn_sftlfBased.nc'],
-# 	'var_names':['sftof','sftof','sftof','sftof','sftof','sftof'],
-# 	'titles':['remapdis','remapbil','remapnn','remapdis from sftlf','remapbil from sftlf','remapnn from sftlf'],
-# 	'outfile':'gmt_method_sensitivities/figures/maps_sftofRegrid.png',
-# 	'label':'sftof [0-100]',
-# 	'color_range':[0,100],
-# 	'extend':[-10,20,40,65],
-# 	'nrows':2,
-# }
+# ACCESS1-0 sftof regridding
+arguments={
+	'files':['sftof_regrid/ACCESS1-0_remapbil.nc','sftof_regrid/CanESM2_remapbil.nc'],
+	'var_names':['sftof','sftof'],
+	'titles':['ACCESS1-0','CanESM2'],
+	'outfile':'gmt_method_sensitivities/figures/maps_sftof_CanESM2_ACCESS1-0.png',
+	'label':'sftof [0-100]',
+	'color_range':[0,100],
+	'extend':[-10,20,40,65],
+	'nrows':1,
+}

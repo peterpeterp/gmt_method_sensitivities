@@ -22,7 +22,7 @@ def plot_maps(**kwargs):
 
 	elif 'levels' not in kwargs.keys():
 		data=[]
-		for file,var,t in zip(kwargs['files'],kwargs['var_names']),kwargs['time_steps']:
+		for file,var,t in zip(kwargs['files'],kwargs['var_names'],kwargs['time_steps']):
 			data.append(da.read_nc(file)[var].ix[t,:,:].squeeze())
 
 	else:
