@@ -23,21 +23,21 @@ import plot_maps as pl_mp; reload(pl_mp)
 
 # sic treatment
 arguments={
-	'files':['data_models/EC-EARTH_r1i1p1/sic_rcp85_1861-2014.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
-	'var_names':['sic','sic'],
+	'files':['/p/projects/ipcc_pcmdi/ipcc_ar5_pcmdi/pcmdi_data/historical/OImon/sic/EC-EARTH/r1i1p1/sic_OImon_EC-EARTH_historical_r1i1p1_185001-200912.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_1861-2014.nc','data_models/EC-EARTH_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
+	'var_names':['sic','sic','sic'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_sicTreatment.png',
 	'label':'sic [0-1]',
 	'color_range':[0,1],
 	'extend':[5,35,50,85],
-	'time_steps':[0,0],
+	'time_steps':[132,0,0],
 }
 pl_mp.plot_maps(**arguments)
 
 
 # tos treatment
 arguments={
-	'files':['data_models/EC-EARTH_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/EC-EARTH_r1i1p1/tos_rcp85_1861-2014.nc'],
+	'files':['/p/projects/ipcc_pcmdi/ipcc_ar5_pcmdi/pcmdi_data/historical/Omon/tos/EC-EARTH/r1i1p1/tos_Omon_EC-EARTH_historical_r1i1p1_185001-200912.nc','data_models/EC-EARTH_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/EC-EARTH_r1i1p1/tos_rcp85_1861-2014.nc'],
 	'var_names':['tos','tos'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_tosTreatment.png',
