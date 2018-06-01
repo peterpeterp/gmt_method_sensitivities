@@ -44,7 +44,7 @@ model=model_run.split('_')[0]
 run=model_run.split('_')[1]
 
 if args.versions is None:
-	versions=['_normal','_sftofError','_tosError','_CRU46','_sicError']
+	versions=['_normal','_sftofError','_tosError','_CRU46','_sicError','_naive']
 else:
 	versions=args.versions
 
