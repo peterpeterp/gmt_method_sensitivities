@@ -19,7 +19,7 @@ model_runs=list(set(model_runs))
 
 styles=['xax','had4']
 variables=['air','gmt']
-versions=['_normal','_sftofError','_tosError','_CRU46','_sicError','_naive']
+versions=['_normal','_sftofError','_tosError','_CRU46','_sicError','_naive','_sftofNanTreated']
 regrids=['_remapnn','_remapdis','_remapbil','_remapnn_sftlfBased','_remapdis_sftlfBased','_remapbil_sftlfBased']
 
 '''
