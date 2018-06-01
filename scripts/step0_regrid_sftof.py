@@ -1,5 +1,5 @@
 import os,glob,sys
-from subprocess import Popen
+from subprocess import Popen,PIPE
 import dimarray as da
 import numpy as np
 from netCDF4 import Dataset,netcdftime,num2date
@@ -15,7 +15,7 @@ for file_name in glob.glob('sftof_regrid/raw/sftof_fx_*_historical_r0i0p0.nc'):
 	model=file_name.split('_')[-3]
 	for regrid_style in ['remapdis','remapnn','remapbil']:
 		#Popen("cdo "+regrid_style+",blend-runnable/grid1x1.cdo "+file_name+" sftof_regrid/"+model+"_"+regrid_style+".nc",shell=True).wait()
-		cdoinfo=Popen('cdo info '+file_name,shell=True, stdout=subprocess.PIPE).stdout.read()
+		cdoinfo=Popen('cdo info '+file_name,shell=True, stdout=PIPE).stdout.read()
 		if len(cdoinfo.split('\n')[1].split(' 0 '))==2:
 			Popen("cdo "+regrid_style+",blend-runnable/grid1x1.cdo -setmisstoc,0 "+file_name+" sftof_regrid/"+model+"_"+regrid_style+"_NanTreated.nc",shell=True).wait()
 
