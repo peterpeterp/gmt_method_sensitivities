@@ -90,6 +90,7 @@ def normal_procedure(model,run,scenario,group,var,overwrite):
 		scenario_files=glob.glob('/p/projects/tumble/carls/shared_folder/gmt/missing_files/'+var+'*'+group+'*'+model+'*'+scenario+'*'+run+'*')
 
 	sftof_files=glob.glob('../sftof_regrid/raw/*'+model+'*')
+	print(sftof_files)
 	if len(scenario_files)!=0:
 		if var=='sic' and len(sftof_files)==1:
 			sftof_file=sftof_files[0]
