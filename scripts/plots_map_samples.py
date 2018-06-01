@@ -30,7 +30,7 @@ arguments={
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_sicTreatment.png',
 	'label':'sic [0-1]',
 	'color_range':[0,1],
-	'extend':[0,30,55,90],
+	'extend':[5,35,50,85],
 	'time_steps':[0,0],
 }
 pl_mp.plot_maps(**arguments)
