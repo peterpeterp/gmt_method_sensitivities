@@ -30,7 +30,7 @@ arguments={
 	'label':'tos [K]',
 	'color_range':[270,290],
 	'extend':[-10,20,30,65],
-	'time_step':0,
+	'time_steps':[0,0],
 }
 pl_mp.plot_maps(**arguments)
 
@@ -43,7 +43,7 @@ arguments={
 	'label':'sic [%]',
 	'color_range':[0,100],
 	'extend':[-10,20,30,65],
-	'time_step':0,
+	'time_steps':[0,0],
 }
 pl_mp.plot_maps(**arguments)
 
