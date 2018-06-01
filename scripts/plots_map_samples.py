@@ -56,7 +56,7 @@ arguments={
 	'outfile':'gmt_method_sensitivities/figures/maps_CanESM2_tas.png',
 	'label':'tas [K]',
 	'color_range':[270,300],
-	'extend':[-10,20,40,65],
+	'extend':[-10,20,30,65],
 	'nrows':1,
 }
 pl_mp.plot_maps(**arguments)
@@ -69,7 +69,7 @@ arguments={
 	'outfile':'gmt_method_sensitivities/figures/maps_sftof_CanESM2_ACCESS1-0.png',
 	'label':'sftof [0-100]',
 	'color_range':[0,100],
-	'extend':[-10,20,40,65],
+	'extend':[-10,20,30,65],
 	'nrows':1,
 }
 pl_mp.plot_maps(**arguments)
