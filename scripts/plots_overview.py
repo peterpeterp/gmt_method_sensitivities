@@ -28,28 +28,28 @@ tos_issues=[u'EC-EARTH_r1i1p1',
  u'MRI-ESM1_r1i1p1',]
 
 
-plt.close('all')
-fig,axes=plt.subplots(nrows=5,ncols=7,figsize=(8,8),gridspec_kw = {'width_ratios':[3,3,3,3,3,3,3]})
-axes=axes.flatten()
-for model_run,ax,i in zip(all_model_runs,axes[0:len(all_model_runs)],range(len(all_model_runs))):
-	if np.isfinite(np.nanmean(gmt_all['_normal','_remapbil','xax','rcp85',model_run,'gmt',:].values)):
-		diff=(gmt_all['_naive','_remapbil','xax','rcp85',model_run,var,1861:2100].values-gmt_cowtan['xax','rcp85',model_run,var,1861:2100].values)
-		ax.plot(gmt_cowtan.time,diff)
-		diff=(gmt_all['_normal','_remapbil','xax','rcp85',model_run,var,1861:2100].values-gmt_cowtan['xax','rcp85',model_run,var,1861:2100].values)
-		ax.plot(gmt_cowtan.time,diff)
+for style in ['xax','had4']:
+	plt.close('all')
+	fig,axes=plt.subplots(nrows=5,ncols=7,figsize=(8,8),gridspec_kw = {'width_ratios':[3,3,3,3,3,3,3]})
+	axes=axes.flatten()
+	for model_run,ax,i in zip(all_model_runs,axes[0:len(all_model_runs)],range(len(all_model_runs))):
+		if np.isfinite(np.nanmean(gmt_all['_normal','_remapbil',style,'rcp85',model_run,'gmt',:].values)):
+			diff=(gmt_all['_naive','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
+			ax.plot(gmt_cowtan.time,diff)
+			diff=(gmt_all['_normal','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
+			ax.plot(gmt_cowtan.time,diff)
 
-	ax.text(1853,0.033,model_run.replace('_','\n'),fontsize=9)
-	ax.set_xlim((1850,2100))
-	ax.set_ylim((-0.05,0.05))
-	ax.get_xaxis().set_visible(False)
-	if i != 0:
-		ax.get_yaxis().set_visible(False)
-	else:
+		ax.text(1853,0.033,model_run.split('_')[0],fontsize=9)
+		ax.set_xlim((1850,2100))
+		ax.set_ylim((-0.05,0.05))
+		ax.get_xaxis().set_visible(False)
 		ax.set_yticks([-0.05,-0.025,0,0.025,0.05])
+		if i%7 != 0:
+			ax.yaxis.set_ticklabels([])
 
-ax=axes[-1]
-ax.axis('off')
+	for ax in axes[-2:]:
+		ax.axis('off')
 
-#plt.tight_layout()
-plt.savefig('figures/overview_'+'xax'+'.png')
+	#plt.tight_layout()
+	plt.savefig('figures/overview_'+style+'.png')
 #
