@@ -40,8 +40,8 @@ arguments={
 	'var_names':['sic','sic'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_EC-EARTH_sicTreatment.png',
-	'label':'sic [%]',
-	'color_range':[0,100],
+	'label':'sic [0-1]',
+	'color_range':[0,1],
 	'extend':[-10,20,30,65],
 	'time_steps':[0,0],
 }
@@ -101,3 +101,4 @@ arguments={
 	'extend':[-10,20,40,65],
 	'nrows':2,
 }
+pl_mp.plot_maps(**arguments)
