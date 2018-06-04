@@ -27,8 +27,8 @@ arguments={
 	'var_names':['sic','sic'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
 	'outfile':'gmt_method_sensitivities/figures/maps_ACCESS1-0_sicTreatment.png',
-	'label':'sic [0-1]',
-	'color_range':[0,1],
+	'label':'sic [%]',
+	'color_range':[0,100],
 	'extend':[5,35,50,85],
 	'time_steps':[0,0],
 }
@@ -37,10 +37,10 @@ pl_mp.plot_maps(**arguments)
 
 # tos treatment
 arguments={
-	'files':['data_models/MIROC5_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/MIROC5_r1i1p1/tos_rcp85_1861-2014.nc'],
+	'files':['data_models/MRI-ESM1_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/MRI-ESM1_r1i1p1/tos_rcp85_1861-2014.nc'],
 	'var_names':['tos','tos'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
-	'outfile':'gmt_method_sensitivities/figures/maps_MIROC5_tosTreatment.png',
+	'outfile':'gmt_method_sensitivities/figures/maps_MRI-ESM1_tosTreatment.png',
 	'label':'tos [K]',
 	'color_range':[270,290],
 	'extend':[-10,20,30,65],
