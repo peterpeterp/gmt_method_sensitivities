@@ -29,7 +29,7 @@ arguments={
 	'outfile':'gmt_method_sensitivities/figures/maps_ACCESS1-0_sicTreatment.png',
 	'label':'sic [%]',
 	'color_range':[0,100],
-	'extend':[5,35,50,85],
+	'extend':[-105,-75,50,85],
 	'time_steps':[0,0],
 }
 pl_mp.plot_maps(**arguments)

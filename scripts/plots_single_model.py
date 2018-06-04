@@ -47,7 +47,14 @@ def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None,yl
 	plt.tight_layout()
 	plt.savefig(outname)
 
-
+plot_single(model_run='MIROC5_r1i1p1',
+			style='xax',
+			var='gmt',
+			ylabel='deviation from Cowtan2015 [K]',
+			versions=['_tosError','_normal'],
+			labels=['0 over land-cells','missing over land cells'],
+			sftof_styles=['_remapbil','_remapbil','_remapbil'],
+			outname='figures/tosError_MIROC5.png')
 
 
 plot_single(model_run='EC-EARTH_r1i1p1',
