@@ -69,16 +69,12 @@ sftof_replace_dict={'HadGEM2-AO':'HadGEM2-ES',
 					'IPSL-CM5B-LR':'ACCESS1-0',
 					} #'CESM1-CAM5':'CESM1-BGC'
 
-# sftof_replace_dict_naive={'HadGEM2-AO':'HadGEM2-ES',
-# 					'GISS-E2-R-CC':'GISS-E2-R',
-# 					'GISS-E2-H-CC':'GISS-E2-H',
-# 					'CNRM-CM5':'CNRM-CM5-2',
-# 					} #'CESM1-CAM5':'CESM1-BGC'
-sftof_replace_dict_naive={'HadGEM2-AO':'ACCES1-0',
-					'GISS-E2-R-CC':'ACCES1-0',
-					'GISS-E2-H-CC':'ACCES1-0',
-					'CNRM-CM5':'ACCES1-0',
+sftof_replace_dict_naive={'HadGEM2-AO':'HadGEM2-ES',
+					'GISS-E2-R-CC':'GISS-E2-R',
+					'GISS-E2-H-CC':'GISS-E2-H',
+					'CNRM-CM5':'CNRM-CM5-2',
 					} #'CESM1-CAM5':'CESM1-BGC'
+
 
 
 for sftof_style in regrid_styles:
