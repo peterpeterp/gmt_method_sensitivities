@@ -29,8 +29,9 @@ tos_issues=[u'EC-EARTH_r1i1p1',
  u'MRI-CGCM3_r1i1p1',
  u'MRI-ESM1_r1i1p1',]
 
-def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None):
+def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None,ylabel=None,title=None):
 	if labels is None: labels=versions
+	if title is None: title=model_run.replace('_',' ')
 	plt.close('all')
 	fig,ax=plt.subplots(nrows=1,ncols=1,figsize=(3,3))
 	for version,sftof_style,label in zip(versions,sftof_styles,labels):
@@ -40,13 +41,19 @@ def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None):
 	ax.set_xlim((1850,2100))
 	#ax.set_ylim((-0.05,0.05))
 	#ax.set_yticks([-0.05,-0.025,0,0.025,0.05])
+	ax.set_title(title)
+	ax.set_ylabel(ylabel)
 	ax.legend(loc='best')
 	plt.tight_layout()
 	plt.savefig(outname)
 
+
+
+
 plot_single(model_run='EC-EARTH_r1i1p1',
 			style='xax',
 			var='gmt',
+			ylabel='deviation from Cowtan2015 [K]',
 			versions=['_naive','_tosError','_normal'],
 			labels=['naive','tos Error','normal'],
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
@@ -55,6 +62,7 @@ plot_single(model_run='EC-EARTH_r1i1p1',
 plot_single(model_run='EC-EARTH_r1i1p1',
 			style='xax',
 			var='gmt',
+			ylabel='deviation from Cowtan2015 [K]',
 			versions=['_naive','_sicError','_normal'],
 			labels=['naive','sic Error','normal'],
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
@@ -64,8 +72,9 @@ plot_single(model_run='EC-EARTH_r1i1p1',
 plot_single(model_run='IPSL-CM5A-LR_r1i1p1',
 			style='xax',
 			var='gmt',
-			versions=['_sftofError','_normal','_sftofNanTreated'],
-			labels=['original sftof','ACCESS1-0 sftof','NAN treatment in sftof'],
+			ylabel='deviation from Cowtan2015 [K]',
+			versions=['_sftofError','_sftofNanTreated','_normal'],
+			labels=['original sftof','NAN treatment in sftof','ACCESS1-0 sftof'],
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
 			outname='figures/sftofError_IPSL-CM5A-LR.png')
 
@@ -73,7 +82,18 @@ plot_single(model_run='IPSL-CM5A-LR_r1i1p1',
 plot_single(model_run='ACCESS1-0_r1i1p1',
 			style='xax',
 			var='gmt',
+			ylabel='deviation from Cowtan2015 [K]',
 			versions=['_normal','_normal','_normal','_normal','_normal','_normal'],
 			labels=['remapdis','remapbil','remapnn','remapdis from sftlf','remapbil from sftlf','remapnn from sftlf'],
 			sftof_styles=['_remapdis','_remapbil','_remapnn','_remapdis_sftlfBased','_remapbil_sftlfBased','_remapnn_sftlfBased'],
 			outname='figures/sftofSensitivity_ACCESS1-0_r1i1p1.png')
+
+
+plot_single(model_run='ACCESS1-0_r1i1p1',
+			style='had4',
+			var='gmt',
+			ylabel='deviation from Cowtan2015 [K]',
+			versions=['_CRU46','_normal'],
+			labels=['CRU4.6.0','CRU4.3.0'],
+			sftof_styles=['_remapbil','_remapbil'],
+			outname='figures/CRU46_ACCESS1-0.png')
