@@ -89,7 +89,7 @@ arguments={
 	'add_cols':1,
 }
 fig,axes=pl_mp.plot_maps(**arguments)
-new_ax=fig.add_axes([0.05,0.071,0.18,0.858])
+new_ax=fig.add_axes(axes[0,0].get_position())
 add_single(ax=new_ax,
 			model_run='IPSL-CM5A-LR_r1i1p1',
 			style='xax',
@@ -114,7 +114,7 @@ arguments={
 	'add_cols':1,
 }
 fig,axes=pl_mp.plot_maps(**arguments)
-new_ax=fig.add_axes([0.1,0.1,0.18,0.8])
+new_ax=fig.add_axes(axes[0,0].get_position())
 add_single(ax=new_ax,
 			model_run='ACCESS1-0_r1i1p1',
 			style='xax',
@@ -140,7 +140,7 @@ arguments={
 	'add_cols':1,
 }
 fig,axes=pl_mp.plot_maps(**arguments)
-new_ax=fig.add_axes([0.1,0.1,0.18,0.8])
+new_ax=fig.add_axes(axes[0,0].get_position())
 add_single(ax=new_ax,
 			model_run='MIROC5_r1i1p1',
 			style='xax',

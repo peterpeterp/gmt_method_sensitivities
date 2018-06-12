@@ -4,6 +4,6 @@ data/*
 written/
 written/*
 figures/
-figures/*
+figures/*.png
 
 *.png
