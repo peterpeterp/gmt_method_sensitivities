@@ -75,6 +75,34 @@ def add_single(ax,model_run,style,var,versions,sftof_styles,outname,labels=None,
 	ax.legend(loc=loc)
 
 
+# sftof replace treatment
+arguments={
+	'files':['sftof_regrid/IPSL-CM5A-LR_remapbil.nc','sftof_regrid/IPSL-CM5A-LR_remapbil_NanTreated.nc','sftof_regrid/ACCESS1-0_remapbil.nc'],
+	'files':['data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc'],
+	'var_names':['tas','tas','tas'],
+	'titles':['IPSL-CM5A-LR','IPSL-CM5A-LR nan treatment','ACCESS1-0'],
+	'label':'sftof [0-100]',
+	'color_range':[0,100],
+	'extend':[-10,20,30,65],
+	#'time_steps':[0,0,0],
+	'nrows':1,
+	'add_cols':1,
+}
+fig,axes=pl_mp.plot_maps(**arguments)
+new_ax=fig.add_axes([0.05,0.071,0.18,0.858])
+add_single(ax=new_ax,
+			model_run='IPSL-CM5A-LR_r1i1p1',
+			style='xax',
+			var='gmt',
+			ylabel='deviation from Cowtan2015 [K]',
+			versions=['_sftofError','_sftofNanTreated','_normal'],
+			labels=['original sftof','NAN treatment in sftof','ACCESS1-0 sftof'],
+			sftof_styles=['_remapbil','_remapbil','_remapbil'],
+			outname='figures/sftofError_IPSL-CM5A-LR.png')
+fig.tight_layout()
+plt.savefig('gmt_method_sensitivities/figures/sftofError_IPSL-CM5A-LR.png',dpi=300)
+
+asdasd
 # sic treatment
 arguments={
 	'files':['data_models/ACCESS1-0_r1i1p1/sic_rcp85_1861-2014.nc','data_models/ACCESS1-0_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
@@ -126,30 +154,7 @@ add_single(ax=new_ax,
 fig.tight_layout()
 plt.savefig('gmt_method_sensitivities/figures/tosError_MIROC5.png',dpi=300)
 
-# sftof replace treatment
-arguments={
-	'files':['sftof_regrid/IPSL-CM5A-LR_remapbil.nc','sftof_regrid/IPSL-CM5A-LR_remapbil_NanTreated.nc','sftof_regrid/ACCESS1-0_remapbil.nc'],
-	'var_names':['sftof','sftof','sftof'],
-	'titles':['IPSL-CM5A-LR','IPSL-CM5A-LR nan treatment','ACCESS1-0'],
-	'label':'sftof [0-100]',
-	'color_range':[0,100],
-	'extend':[-10,20,30,65],
-	'nrows':1,
-	'add_cols':1,
-}
-fig,axes=pl_mp.plot_maps(**arguments)
-new_ax=fig.add_axes([0.1,0.1,0.18,0.8])
-add_single(ax=new_ax,
-			model_run='IPSL-CM5A-LR_r1i1p1',
-			style='xax',
-			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
-			versions=['_sftofError','_sftofNanTreated','_normal'],
-			labels=['original sftof','NAN treatment in sftof','ACCESS1-0 sftof'],
-			sftof_styles=['_remapbil','_remapbil','_remapbil'],
-			outname='figures/sftofError_IPSL-CM5A-LR.png')
-fig.tight_layout()
-plt.savefig('gmt_method_sensitivities/figures/sicError_ACCESS1-0.png',dpi=300)
+
 
 # ACCESS1-0 sftof regridding
 arguments={
@@ -173,7 +178,7 @@ plot_single(model_run='ACCESS1-0_r1i1p1',
 			versions=['_normal','_normal','_normal','_normal','_normal','_normal'],
 			labels=['remapdis','remapbil','remapnn','remapdis from sftlf','remapbil from sftlf','remapnn from sftlf'],
 			sftof_styles=['_remapdis','_remapbil','_remapnn','_remapdis_sftlfBased','_remapbil_sftlfBased','_remapnn_sftlfBased'],
-			outname='figures/sftofSensitivity_ACCESS1-0_r1i1p1.png')
+			outname='gmt_method_sensitivities/figures/sftofSensitivity_ACCESS1-0_r1i1p1.png')
 
 
 plot_single(model_run='ACCESS1-0_r1i1p1',
@@ -183,4 +188,4 @@ plot_single(model_run='ACCESS1-0_r1i1p1',
 			versions=['_CRU46','_normal'],
 			labels=['CRU4.6.0','CRU4.3.0'],
 			sftof_styles=['_remapbil','_remapbil'],
-			outname='figures/CRU46_ACCESS1-0.png')
+			outname='gmt_method_sensitivities/figures/CRU46_ACCESS1-0.png')

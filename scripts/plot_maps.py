@@ -48,7 +48,7 @@ def plot_maps(**kwargs):
 		add_cols=kwargs['add_cols']
 	ncols+=add_cols
 
-	fig,axes = plt.subplots(nrows=nrows,ncols=ncols+1,figsize=(3*asp*ncols,3*nrows),subplot_kw={'projection': plate_carree},gridspec_kw = {'width_ratios':[3]*ncols+[1]})
+	fig,axes = plt.subplots(nrows=nrows,ncols=ncols+1,figsize=((len(data)+1)*asp*ncols,(len(data)+1)*nrows),subplot_kw={'projection': plate_carree},gridspec_kw = {'width_ratios':[3]*ncols+[1]})
 	if len(axes.shape)==1: axes=np.expand_dims(axes, axis=0)
 	for ax,i in zip(axes[:,add_cols:-1].flatten()[:len(data)],range(len(data))):
 		ax.set_global()
