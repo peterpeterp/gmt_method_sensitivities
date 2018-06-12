@@ -35,9 +35,9 @@ for style in ['xax','had4']:
 	for model_run,ax,i in zip(all_model_runs,axes[0:len(all_model_runs)],range(len(all_model_runs))):
 		if np.isfinite(np.nanmean(gmt_all['_normal','_remapbil',style,'rcp85',model_run,'gmt',:].values)):
 			diff=(gmt_all['_naive','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
-			ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='naive pre-processing')
-			diff=(gmt_all['_normal','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
-			ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='closest to original')
+			ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='straight forward pre-processing')
+			# diff=(gmt_all['_normal','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
+			# ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='closest to original')
 
 		ax.annotate(model_run.split('_')[0],fontsize=9, xy=(0.02, 0.9), xycoords='axes fraction')
 		ax.set_xlim((1850,2100))
@@ -46,8 +46,10 @@ for style in ['xax','had4']:
 		ax.set_yticks([-0.05,-0.025,0,0.025,0.05])
 		if i%7 != 0:
 			ax.yaxis.set_ticklabels([])
+		if i==14:
+			ax.set_ylabel('deviations from original [K]')
 
-	ax.legend(loc='left',bbox_to_anchor=(3.6, 1.05))
+	#ax.legend(loc='left',bbox_to_anchor=(4.4, 1.05))
 
 	for ax in axes[-3:]:
 		ax.axis('off')
