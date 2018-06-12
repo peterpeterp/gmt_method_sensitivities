@@ -102,7 +102,6 @@ add_single(ax=new_ax,
 fig.tight_layout()
 plt.savefig('gmt_method_sensitivities/figures/sftofError_IPSL-CM5A-LR.png',dpi=300)
 
-asdasd
 # sic treatment
 arguments={
 	'files':['data_models/ACCESS1-0_r1i1p1/sic_rcp85_1861-2014.nc','data_models/ACCESS1-0_r1i1p1/sic_rcp85_sicFix_1861-2014.nc'],
