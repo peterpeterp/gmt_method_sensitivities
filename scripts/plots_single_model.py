@@ -79,7 +79,7 @@ def add_single(ax,model_run,style,var,versions,sftof_styles,outname,labels=None,
 arguments={
 	'files':['sftof_regrid/IPSL-CM5A-LR_remapbil.nc','sftof_regrid/IPSL-CM5A-LR_remapbil_NanTreated.nc','sftof_regrid/ACCESS1-0_remapbil.nc'],
 	'files':['data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc','data_models/CanESM2_r1i1p1/sample_tas.nc'],
-	'var_names':['tas','tas','tas'],
+	'var_names':['sftof','sftof','sftof'],
 	'titles':['IPSL-CM5A-LR','IPSL-CM5A-LR nan treatment','ACCESS1-0'],
 	'label':'sftof [0-100]',
 	'color_range':[0,100],
