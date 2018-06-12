@@ -23,7 +23,7 @@ sys.path.append('gmt_method_sensitivities/scripts')
 
 import plot_maps as pl_mp; reload(pl_mp)
 
-
+os.system('ls')
 
 gmt_cowtan=da.read_nc('data/gmt_all_cowtan.nc')['gmt']
 
