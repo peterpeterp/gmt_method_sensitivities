@@ -37,10 +37,10 @@ pl_mp.plot_maps(**arguments)
 
 # tos treatment
 arguments={
-	'files':['data_models/MRI-ESM1_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/MRI-ESM1_r1i1p1/tos_rcp85_1861-2014.nc'],
+	'files':['data_models/MIROC5_r1i1p1/tos_rcp85_tosError_1861-2014.nc','data_models/MIROC5_r1i1p1/tos_rcp85_1861-2014.nc'],
 	'var_names':['tos','tos'],
 	'titles':['no NAN-treatment','correct NAN-treatment'],
-	'outfile':'gmt_method_sensitivities/figures/maps_MRI-ESM1_tosTreatment.png',
+	'outfile':'gmt_method_sensitivities/figures/maps_MIROC5_tosTreatment.png',
 	'label':'tos [K]',
 	'color_range':[270,290],
 	'extend':[-10,20,30,65],

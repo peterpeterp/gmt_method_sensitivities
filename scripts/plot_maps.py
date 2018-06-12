@@ -43,14 +43,9 @@ def plot_maps(**kwargs):
 		nrows=1
 		ncols=len(data)/nrows
 
-	add_cols=0
-	if 'add_cols' in kwargs.keys():
-		add_cols=kwargs['add_cols']
-	ncols+=add_cols
-
-	fig,axes = plt.subplots(nrows=nrows,ncols=ncols+1,figsize=((len(data)+1)*1.5*asp*ncols,(len(data)+1)*nrows),subplot_kw={'projection': plate_carree},gridspec_kw = {'width_ratios':[3]*ncols+[1]})
+	fig,axes = plt.subplots(nrows=nrows,ncols=ncols+1,figsize=(3*asp*len(data)/nrows,3*nrows),subplot_kw={'projection': plate_carree},gridspec_kw = {'width_ratios':[3]*ncols+[1]})
 	if len(axes.shape)==1: axes=np.expand_dims(axes, axis=0)
-	for ax,i in zip(axes[:,add_cols:-1].flatten()[:len(data)],range(len(data))):
+	for ax,i in zip(axes[:,:-1].flatten()[:len(data)],range(len(data))):
 		ax.set_global()
 		ax.coastlines(edgecolor='black')
 		ax.axis('off')
@@ -65,7 +60,7 @@ def plot_maps(**kwargs):
 		ax.set_title(kwargs['titles'][i])
 		#ax.annotate(season+'\n'+dataset, xy=(0.02, 0.05), xycoords='axes fraction', fontsize=9,fontweight='bold')
 
-	for ax in axes.flatten():
+	for ax in axes[:,-1]:
 		ax.axis('off')
 		ax.outline_patch.set_edgecolor('white')
 
@@ -74,11 +69,8 @@ def plot_maps(**kwargs):
 	cb=fig.colorbar(im,orientation='vertical',label=kwargs['label'],ax=cbar_ax)
 
 	#plt.suptitle('mean persistence', fontweight='bold')
-	if 'outfile' in kwargs.keys():
-		fig.tight_layout()
-		plt.savefig(kwargs['outfile'],dpi=300)
-	else:
-		return fig,axes
+	fig.tight_layout()
+	plt.savefig(kwargs['outfile'],dpi=300)
 
 
 if __name__=='__main__':
