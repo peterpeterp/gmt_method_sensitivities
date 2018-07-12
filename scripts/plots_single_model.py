@@ -29,7 +29,7 @@ tos_issues=[u'EC-EARTH_r1i1p1',
  u'MRI-CGCM3_r1i1p1',
  u'MRI-ESM1_r1i1p1',]
 
-def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None,ylabel=None,title=None,loc='best'):
+def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None,ylabel=None,title=None,loc='best',dpi=300):
 	if labels is None: labels=versions
 	if title is None: title=model_run.replace('_',' ')
 	plt.close('all')
@@ -45,61 +45,44 @@ def plot_single(model_run,style,var,versions,sftof_styles,outname,labels=None,yl
 	ax.set_ylabel(ylabel)
 	ax.legend(loc=loc)
 	plt.tight_layout()
-	plt.savefig(outname)
+	plt.savefig(outname,dpi=dpi)
 
 plot_single(model_run='MIROC5_r1i1p1',
 			style='xax',
 			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
+			ylabel='deviation from original blended GMT [K]',
 			versions=['_tosError','_normal'],
 			labels=['0 over land-cells','missing over land-cells'],
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
 			outname='figures/tosError_MIROC5.png')
-
-
-plot_single(model_run='EC-EARTH_r1i1p1',
-			style='xax',
-			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
-			versions=['_naive','_tosError','_normal'],
-			labels=['naive','tos Error','normal'],
-			sftof_styles=['_remapbil','_remapbil','_remapbil'],
-			outname='figures/tosError_EC-EARTH.png')
+os.system('convert +append figures/tosError_MIROC5.png figures/maps_MIROC5_tosTreatment.png figures/tosIssue_MIROC5.png')
 
 plot_single(model_run='ACCESS1-0_r1i1p1',
 			style='xax',
 			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
+			ylabel='deviation from original blended GMT [K]',
 			versions=['_sicError','_normal'],
 			labels=['0 over land-cells','missing over land-cells'],
 			loc='lower left',
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
 			outname='figures/sicError_ACCESS1-0.png')
-
-plot_single(model_run='EC-EARTH_r1i1p1',
-			style='xax',
-			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
-			versions=['_naive','_sicError','_normal'],
-			labels=['naive','sic Error','normal'],
-			sftof_styles=['_remapbil','_remapbil','_remapbil'],
-			outname='figures/sicError_EC-EARTH.png')
-
+os.system('convert +append figures/sicError_ACCESS1-0.png figures/maps_ACCESS1-0_sicTreatment.png figures/sicIssue_ACCESS1-0.png')
 
 plot_single(model_run='IPSL-CM5A-LR_r1i1p1',
 			style='xax',
 			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
+			ylabel='deviation from original blended GMT [K]',
 			versions=['_sftofError','_sftofNanTreated','_normal'],
 			labels=['original sftof','NAN treatment in sftof','ACCESS1-0 sftof'],
 			sftof_styles=['_remapbil','_remapbil','_remapbil'],
 			outname='figures/sftofError_IPSL-CM5A-LR.png')
+os.system('convert +append figures/sftofError_IPSL-CM5A-LR.png figures/maps_IPSL-CM5A-LR_sftofTreatment.png figures/sftofIssue_IPSL-CM5A-LR.png')
 
 
 plot_single(model_run='ACCESS1-0_r1i1p1',
 			style='xax',
 			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
+			ylabel='deviation from original blended GMT [K]',
 			versions=['_normal','_normal','_normal','_normal','_normal','_normal'],
 			labels=['remapdis','remapbil','remapnn','remapdis from sftlf','remapbil from sftlf','remapnn from sftlf'],
 			sftof_styles=['_remapdis','_remapbil','_remapnn','_remapdis_sftlfBased','_remapbil_sftlfBased','_remapnn_sftlfBased'],
@@ -109,8 +92,9 @@ plot_single(model_run='ACCESS1-0_r1i1p1',
 plot_single(model_run='ACCESS1-0_r1i1p1',
 			style='had4',
 			var='gmt',
-			ylabel='deviation from Cowtan2015 [K]',
+			ylabel='deviation from original blended GMT [K]',
 			versions=['_CRU46','_normal'],
 			labels=['CRU4.6.0','CRU4.3.0'],
 			sftof_styles=['_remapbil','_remapbil'],
-			outname='figures/CRU46_ACCESS1-0.png')
+			outname='figures/CRU46_ACCESS1-0.png',
+			dpi=300)

@@ -53,7 +53,7 @@ arguments={
 	'files':['sftof_regrid/IPSL-CM5A-LR_remapbil.nc','sftof_regrid/IPSL-CM5A-LR_remapbil_NanTreated.nc','sftof_regrid/ACCESS1-0_remapbil.nc'],
 	'var_names':['sftof','sftof','sftof'],
 	'titles':['IPSL-CM5A-LR','IPSL-CM5A-LR nan treatment','ACCESS1-0'],
-	'outfile':'gmt_method_sensitivities/figures/maps_sftof_IPSL-CM5A-LR.png',
+	'outfile':'gmt_method_sensitivities/figures/maps_IPSL-CM5A-LR_sftofTreatment.png',
 	'label':'sftof [0-100]',
 	'color_range':[0,100],
 	'extend':[-10,20,30,65],

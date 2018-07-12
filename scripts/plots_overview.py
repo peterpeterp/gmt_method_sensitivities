@@ -6,7 +6,8 @@ import dimarray as da
 import itertools
 import matplotlib
 import pandas as pd
-import seaborn as sn
+import seaborn as sns
+sns.set()
 
 os.chdir('/Users/peterpfleiderer/Documents/Projects/gmt/gmt_method_sensitivities')
 
@@ -30,16 +31,16 @@ tos_issues=[u'EC-EARTH_r1i1p1',
 var='gmt'
 for style in ['xax','had4']:
 	plt.close('all')
-	fig,axes=plt.subplots(nrows=5,ncols=7,figsize=(8,8),gridspec_kw = {'width_ratios':[3,3,3,3,3,3,3]})
+	fig,axes=plt.subplots(nrows=5,ncols=7,figsize=(7,6.8),gridspec_kw = {'width_ratios':[3,3,3,3,3,3,3]})
 	axes=axes.flatten()
 	for model_run,ax,i in zip(all_model_runs,axes[0:len(all_model_runs)],range(len(all_model_runs))):
 		if np.isfinite(np.nanmean(gmt_all['_normal','_remapbil',style,'rcp85',model_run,'gmt',:].values)):
 			diff=(gmt_all['_naive','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
-			ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='straight forward pre-processing')
-			# diff=(gmt_all['_normal','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
-			# ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='closest to original')
+			ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='straight forward preprocessing')
+			diff=(gmt_all['_normal','_remapbil',style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
+			ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label='including additional\n preprocessing steps')
 
-		ax.annotate(model_run.split('_')[0],fontsize=9, xy=(0.02, 0.9), xycoords='axes fraction')
+		ax.annotate(model_run.split('_')[0],fontsize=8, xy=(0.02, 0.9), xycoords='axes fraction')
 		ax.set_xlim((1850,2100))
 		ax.set_ylim((-0.05,0.05))
 		ax.get_xaxis().set_visible(False)
@@ -47,9 +48,9 @@ for style in ['xax','had4']:
 		if i%7 != 0:
 			ax.yaxis.set_ticklabels([])
 		if i==14:
-			ax.set_ylabel('deviations from original [K]')
+			ax.set_ylabel('deviations from original blended GMT [K]')
 
-	#ax.legend(loc='left',bbox_to_anchor=(4.4, 1.05))
+	ax.legend(loc='left',bbox_to_anchor=(0.9, 1.05))
 
 	for ax in axes[-3:]:
 		ax.axis('off')
@@ -62,13 +63,13 @@ for style in ['xax','had4']:
 var='gmt'
 for style in ['xax']:
 	plt.close('all')
-	fig,axes=plt.subplots(nrows=5,ncols=7,figsize=(8,8),gridspec_kw = {'width_ratios':[3,3,3,3,3,3,3]})
+	fig,axes=plt.subplots(nrows=5,ncols=7,figsize=(7,7),gridspec_kw = {'width_ratios':[3,3,3,3,3,3,3]})
 	axes=axes.flatten()
 	for model_run,ax,i in zip(all_model_runs,axes[0:len(all_model_runs)],range(len(all_model_runs))):
 		if np.isfinite(np.nanmean(gmt_all['_normal','_remapbil',style,'rcp85',model_run,'gmt',:].values)):
 			for regrid in ['_remapdis','_remapbil','_remapnn','_remapdis_sftlfBased','_remapbil_sftlfBased','_remapnn_sftlfBased']:
 				diff=(gmt_all['_normal',regrid,style,'rcp85',model_run,var,1861:2100].values-gmt_cowtan[style,'rcp85',model_run,var,1861:2100].values)
-				ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label=regrid.replace('_',''))
+				ax.plot(range(1861,2100,1),diff.reshape((len(gmt_cowtan.time)/12,12)).mean(axis=-1),label=regrid.replace('_',' '))
 
 		ax.annotate(model_run.split('_')[0],fontsize=9, xy=(0.02, 0.9), xycoords='axes fraction')
 		ax.set_xlim((1850,2100))
@@ -77,8 +78,10 @@ for style in ['xax']:
 		ax.set_yticks([-0.025,-0.0125,0,0.0125,0.025])
 		if i%7 != 0:
 			ax.yaxis.set_ticklabels([])
+		if i==14:
+			ax.set_ylabel('deviations from original blended GMT [K]')
 
-	ax.legend(bbox_to_anchor=(1.1, 1.05))
+	ax.legend(loc='left',bbox_to_anchor=(1.05, 1.05))
 	for ax in axes[-3:]:
 		ax.axis('off')
 
